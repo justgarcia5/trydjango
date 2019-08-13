@@ -1,2 +1,11 @@
-<h1>Contact page</h1>
-<p>This is the contact page!!</p>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Contact Page</h1>
+<!-- {{ request.user.is_authenticated }} -->
+<p>Welcome to the contact page</p>
+{% endblock %}
+
+{% block content_2 %}
+<p>Hello </p>
+{% endblock %}
