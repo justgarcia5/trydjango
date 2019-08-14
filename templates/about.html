@@ -3,10 +3,11 @@
 {% block content %}
 
 <h1>About page</h1>
+<h3>{{ title|capfirst }}</h3>
 <p>This is the About page!!</p>
 
 <p>
-  {{ my_text }}, {{ my_number }}
+  {{ my_number }}
 </p>
 
 <ul>
@@ -14,7 +15,7 @@
   {% if abc == 312 %}
     <li>{{ forloop.counter }} - {{ abc|add:22 }}</li>
   {% elif abc == "abc"%}
-    <li>This is not a network</li>
+    <li>This is not a network {{ request.user }}</li>
   {% else %}
     <li>{{ forloop.counter }} - {{ abc }}</li>
   {% endif %}
