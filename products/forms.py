@@ -1,3 +1,4 @@
+
 from django import forms
 
 from .models import Product
@@ -12,6 +13,21 @@ class ProductForm(forms.ModelForm):
     ]
 
 class RawProductForm(forms.Form):
-  title = forms.CharField()
-  description = forms.CharField()
-  price = forms.DecimalField()
+  title = forms.CharField(
+    label='Product title',
+    widget=forms.TextInput(
+      attrs={
+        "placeholder": "Your title"
+      }
+    ))
+  description = forms.CharField(
+    required=False,
+    widget=forms.Textarea(
+      attrs={
+        "class": "new-class-name two",
+        "id": "my-id-fortestaera",
+        "rows": 20,
+        "column": 120
+      }
+    ))
+  price = forms.DecimalField(initial=199.99)
