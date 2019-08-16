@@ -4,7 +4,7 @@ from .models import Product
 
 class ProductForm(forms.ModelForm):
   title = forms.CharField(
-    label='',
+    label='Title',
     widget=forms.TextInput(
       attrs={
         "placeholder": "Your title"
@@ -62,4 +62,4 @@ class RawProductForm(forms.Form):
       }
     ))
   price = forms.DecimalField(initial=199.99)
-  email = forms.EmailField()
+  # email = forms.EmailField()
