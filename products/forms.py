@@ -16,12 +16,11 @@ class ProductForm(forms.ModelForm):
     widget=forms.Textarea(
       attrs={
         "class": "new-class-name two",
-        "id": "my-id-fortestaera",
         "rows": 20,
         "column": 120
       }
     ))
-  price = forms.DecimalField(initial=199.99)
+  price = forms.DecimalField()
 
   class Meta:
     model = Product
