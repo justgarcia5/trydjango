@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 
-
-
 {% block content %}
+
 <h1>Products</h1>
 
-{{ object_list }}
-
 {% for instance in object_list %}
-  <p>{{ instance.id }} - {{ instance.title }}, {{ instance.description }}, ${{ instance.price }} </p>
-  <button>
-    <a href="/products/{{ instance.id }}/" style="text-decoration: none; color: black">Details</a>
-  </button>
+  <p>{{ instance.id }} - {{ instance.title }} ${{ instance.price }}
+    <button>
+      <a href="/products/{{ instance.id }}/" style="text-decoration: none; color: black">Details</a>
+    </button>
+    <button>
+      <a href="/products/edit/{{ instance.id }}/" style="text-decoration: none; color: black">Edit</a>
+    </button>
+  </p>
 {% endfor %}
 
 {% endblock %}

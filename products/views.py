@@ -20,16 +20,6 @@ from .forms import ProductForm, RawProductForm
 #   }
 #   return render(request, 'products/product_create.html', context)
 
-# def product_create_view(request):
-#   # print(request.GET)
-#   # print(request.POST)
-#   if request.method == 'POST':
-#     my_new_title = request.POST.get('title')
-#     print(my_new_title)
-#     # Product.objects.create(title = my_new_title)
-#   context = {}
-#   return render(request, 'products/product_create.html', context)
-
 def product_create_view(request):
   form = ProductForm(request.POST or None)
   if form.is_valid():
@@ -55,7 +45,6 @@ def dynamic_lookup_view(request, id):
   }
   return render(request, 'products/product_detail.html', context)
 
-
 def product_list_view(request):
   queryset = Product.objects.all()
   context = {
@@ -64,18 +53,21 @@ def product_list_view(request):
   return render(request, 'products/product_list.html', context)
 
 #create initial data for input
-def render_initial_data(request):
-  initial_data = {
-    'title': "My this is an awesome title"
-  }
-  obj = Product.objects.get(id=2)
-  form = ProductForm(request.POST or None, initial=initial_data, instance=obj)
+def render_initial_data(request, id):
+  obj = Product.objects.get(id=id)
+  # initial_data = {
+  #   'title': obj.title,
+  #   'description': obj.description,
+  #   'price': obj.price
+  # }
+  form = ProductForm(request.POST or None, instance=obj)
   if form.is_valid():
     form.save()
+    return redirect('/products/')
   context = {
     "form": form
   }
-  return render(request, 'products/product_create.html', context)
+  return render(request, 'products/product_edit.html', context)
 
 def product_delete_view(request, id):
   obj = get_object_or_404(Product, id=id)
