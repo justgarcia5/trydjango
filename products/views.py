@@ -38,7 +38,7 @@ def product_detail_view(request, id):
   }
   return render(request, 'products/product_detail.html', context)
 
-def dynamic_lookup_view(request, id):
+def product_detail_view(request, id):
   obj = get_object_or_404(Product, id=id)
   context = {
     'object': obj
@@ -53,13 +53,8 @@ def product_list_view(request):
   return render(request, 'products/product_list.html', context)
 
 #create initial data for input
-def render_initial_data(request, id):
+def product_update_view(request, id):
   obj = Product.objects.get(id=id)
-  # initial_data = {
-  #   'title': obj.title,
-  #   'description': obj.description,
-  #   'price': obj.price
-  # }
   form = ProductForm(request.POST or None, instance=obj)
   if form.is_valid():
     form.save()
